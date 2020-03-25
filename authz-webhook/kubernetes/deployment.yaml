@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authz-webhook
+  labels:
+    app: authz-webhook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authz-webhook
+  template:
+    metadata:
+      labels:
+        app: authz-webhook
+    spec:
+      containers:
+      - name: authz-webhook
+        image: authz-webhook:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
