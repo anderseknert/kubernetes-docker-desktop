@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Config
+clusters:
+  - name: authz-webhook
+    cluster:
+      certificate-authority: /path/to/ca.pem
+      # TODO
+      server: https://authz.example.com/authorize
+users:
+  - name: authz-webhook
+    user:
+      token: abc123
+current-context: authz-webhook
+contexts:
+- context:
+    cluster: authz-webhook
+    user: authz-webhook
+  name: authz-webhook
